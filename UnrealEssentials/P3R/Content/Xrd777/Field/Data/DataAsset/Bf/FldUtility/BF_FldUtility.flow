@@ -289,6 +289,16 @@ int PlayerMenuDisplay()
 					break;
 				else
 					return 0;
+			case 4:
+				if (AddMember() == -1)
+					break;
+				else
+					return 0;
+			case 5:
+				if (RemoveMember() == -1)
+					break;
+				else
+					return 0;
             case -1:
                 return -1;
 		}
@@ -362,6 +372,34 @@ int ChangeItem()
 		return -1;
 	SET_ITEM_NUM(item, numItems);
 	return 0;
+}
+
+int AddMember()
+{
+	int member = SelectMember();
+	if (member == -1)
+		return -1;
+	PARTY_IN( member );
+	return 0;
+}
+
+int RemoveMember()
+{
+	int member = SelectMember();
+	if (member == -1)
+		return -1;
+	PARTY_OUT( member );
+	return 0;
+}
+
+int SelectMember()
+{
+	int member = SEL_GENERIC_EX( 41, 40, 42, 1, 0 );
+	if (member == -1)
+		return -1;
+	if (member < 4)
+		return member + 2;
+	return member + 3;
 }
 
 int FlagMenuDisplay()
