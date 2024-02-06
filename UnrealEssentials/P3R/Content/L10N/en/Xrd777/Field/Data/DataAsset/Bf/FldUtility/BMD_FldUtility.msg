@@ -37,6 +37,7 @@
 [sel Call_Menu]
 [uf 0 5 65278][uf 2 1]Call Field[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Call Event[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Call Social Link Event[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Call Key Free Event[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Call Battle[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Call Dungeon[uf 1 1][e]

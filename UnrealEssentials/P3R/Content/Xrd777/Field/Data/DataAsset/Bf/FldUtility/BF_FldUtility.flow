@@ -104,26 +104,31 @@ int CallMenuDisplay()
 				else
 					return 0;
 			case 2:
-				if (KeyFreeEventSelect() == -1)
+				if (CmmEventSelect() == -1)
 					break;
 				else
 					return 0;
 			case 3:
+				if (KeyFreeEventSelect() == -1)
+					break;
+				else
+					return 0;
+			case 4
 				if (BattleSelect() == -1)
 					break;
 				else
 					return 0;
-			case 4:
+			case 5:
 				if (DungeonSelect() == -1)
 					break;
 				else
 					return 0;
-			case 5:
+			case 6:
 				if (MovieSelect() == -1)
 					break;
 				else
 					return 0;
-			case 6:
+			case 7:
 				if (BgmSelect() == -1)
 					break;
 				else
@@ -171,6 +176,25 @@ int EventSelect()
 	return 0;
 }
 
+int CmmEventSelect()
+{
+	int fieldMajor = FLD_GET_MAJOR();
+	int fieldMinor = FLD_GET_MINOR();
+	int part = GET_FIELD_PARTS_ID();
+	int major = NumberMenu(3, 15);
+	if (major == -1)
+		return -1;
+	int minor = NumberMenu(3, 16);
+	if (minor == -1)
+		return -1;
+    EVT_ENABLE_SKIP_BC();
+	CALL_EVENT_CMM(major, minor);
+    FADE_IN( 3, 10 );
+    FADE_SYNC();
+	CALL_FIELD(fieldMajor, fieldMinor, part);
+	return 0;
+}
+
 int KeyFreeEventSelect()
 {
 	int fieldMajor = FLD_GET_MAJOR();
@@ -197,7 +221,7 @@ int KeyFreeEventSelect()
 
 int BattleSelect()
 {
-	int major = NumberMenu(3, 15);
+	int major = NumberMenu(4, 15);
 	if (major == -1)
 		return -1;
 	CALL_FIELDBATTLE(major);
