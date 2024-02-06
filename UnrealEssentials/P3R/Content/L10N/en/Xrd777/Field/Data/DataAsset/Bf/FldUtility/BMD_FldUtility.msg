@@ -54,6 +54,7 @@
 [uf 0 5 65278][uf 2 1]Change Items[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Add Party Member[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Remove Party Member[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Max HP/SP[uf 1 1][e]
 
 [sel Options_Digits]
 [uf 0 5 65278][uf 2 1]0[uf 1 1][e]
@@ -178,3 +179,19 @@
 [uf 0 5 65278][uf 2 1]Koromaru[uf 4 27 9 0][e]
 [uf 0 5 65278][uf 2 1]Shinjiro[uf 4 27 10 0][e]
 
+[sel Item_Type_List]
+[uf 0 5 65278][uf 2 1]Weapons[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Armor (Body)[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Armor (Footwear)[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Accessories[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Consumables[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Key Items[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Materials[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Skill Cards[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Outfits[uf 1 1][e]
+
+[msg Item_Type_Text]
+[uf 0 5 65278][uf 2 1]Select Item Type[uf 1 1][e]
+
+[msg Item_Types_Text]
+[uf 0 5 65278][uf 2 1]Item Types[uf 1 1][e]

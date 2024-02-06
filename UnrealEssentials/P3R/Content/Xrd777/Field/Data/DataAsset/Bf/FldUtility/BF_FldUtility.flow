@@ -206,10 +206,10 @@ int KeyFreeEventSelect()
 	int minor = NumberMenu(3, 16);
 	if (minor == -1)
 		return -1;
-	int major2 = NumberMenu(3, 15);
+	int major2 = NumberMenu(4, 15);
 	if (major2 == -1)
 		return -1;
-	int minor2 = NumberMenu(3, 16);
+	int minor2 = NumberMenu(4, 16);
 	if (minor2 == -1)
 		return -1;
 	CALL_KEYFREE_EVENT(major, minor, major2, minor2);
@@ -299,6 +299,9 @@ int PlayerMenuDisplay()
 					break;
 				else
 					return 0;
+			case 6:
+				SetMaxHPSP();
+				return 0;
             case -1:
                 return -1;
 		}
@@ -336,7 +339,6 @@ int DateSelect()
 
 int ChooseMonth()
 {
-	SEL_DEFKEY(13, 18);
 	int month = SEL_GENERIC_EX( 20, 19, 18, 1, 0 );
 	if (month != 18)
 		return month + 1;
@@ -356,13 +358,18 @@ int ChangeYen()
 
 int ChangeItem()
 {
-	int item = NumberMenu(4, 28);
+	int itemType = SelectItemType();
+	if (itemType == -1)
+		return -1;
+	int item = NumberMenu(3, 28);
 	if (item == -1)
 		return -1;
+	item = item + itemType;
 	SET_MSG_VAR(0, item, 1);
 	SET_MSG_VAR(1, GET_ITEM_NUM(item), 0);
 	MSG_WND_DSP();
 	MSG( 29, 0 );
+	SEL_DEFKEY(16, 1);
 	int confirm = SEL(31);
 	MSG_WND_CLS();
 	if (confirm == 1)
@@ -370,8 +377,17 @@ int ChangeItem()
 	int numItems = NumberMenu(2, 30);
 	if (numItems == -1)
 		return -1;
-	SET_ITEM_NUM(item, numItems);
+	ADD_GET_ITEM_LIST(item, numItems);
+	OPEN_GET_ITEM();
 	return 0;
+}
+
+int SelectItemType()
+{
+	int itemType = SEL_GENERIC_EX( 45, 44, 43, 1, 0 );
+	if (itemType == -1)
+		return -1;
+	return itemType * 0x1000;
 }
 
 int AddMember()
@@ -400,6 +416,19 @@ int SelectMember()
 	if (member < 4)
 		return member + 2;
 	return member + 3;
+}
+
+void SetMaxHPSP()
+{
+	for ( int i = 0; i <= 10; i++ ) 
+	{
+		int currHP = GET_MAXHP(i);
+		int currSP = GET_MAXSP(i);
+		ADD_MAXHP_UP(i, 999 - currHP);
+		ADD_MAXSP_UP(i, 999 - currSP);
+		SET_HP(i, 999);
+		SET_SP(i, 999);
+	}
 }
 
 int FlagMenuDisplay()
