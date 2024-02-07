@@ -285,6 +285,11 @@ int EditPersonaDisplay()
 				CLEAR_PERSONA_STOCK();
 				return 0;
 			case 2:
+				if (AddSkill() == -1)
+					break;
+				else
+					return 0;
+			case 3:
 				if (EvolvePersona() == -1)
 					break;
 				else
@@ -305,9 +310,39 @@ int AddPersona()
 	return 0;
 }
 
+int AddSkill()
+{
+	int member = SelectMember(true, true);
+	if (member == -1)
+		return -1;
+	int persona = -1;
+	// Input ID if protagonist
+	if (member == 1)
+		persona = NumberMenu(3, 52);
+	// Check for evolution
+	else if (member > 1 && member < 9)
+	{
+		if (CHK_PERSONA_EVOLUTION( member ))
+			persona = 2 * member - 2;
+		else
+			persona = 2 * member - 3;
+	}
+	else if (member == 9)
+		persona = 16;
+	else if (member == 10)
+		persona = 15;
+	if (persona == -1)
+		return -1;
+	int skill = NumberMenu(4, 53);
+	if (persona == -1)
+		return -1;
+	ADD_PERSONA_SKILL(member, persona, skill);
+	return 0;
+}
+
 int EvolvePersona()
 {
-	int member = SelectMember(true);
+	int member = SelectMember(false, true);
 	if (member == -1)
 		return -1;
 	PERSONA_EVOLUTION(member);
@@ -392,7 +427,7 @@ int ChangeItem()
 	SET_MSG_VAR(1, GET_ITEM_NUM(item), 0);
 	MSG_WND_DSP();
 	MSG( 29, 0 );
-	SEL_DEFKEY(16, 1);
+	SEL_DEFKEY(18, 1);
 	int confirm = SEL(31);
 	MSG_WND_CLS();
 	if (confirm == 1)
@@ -418,13 +453,14 @@ int AddMember()
 	int fieldMajor = FLD_GET_MAJOR();
 	int fieldMinor = FLD_GET_MINOR();
 	int part = GET_FIELD_PARTS_ID();
-	int member = SelectMember(false);
+	int member = SelectMember(false, false);
 	if (member == -1)
 		return -1;
 	PARTY_IN( member );
-    FADE_IN( 3, 10 );
-    FADE_SYNC();
-	CALL_FIELD(fieldMajor, fieldMinor, part);
+    //FADE_IN( 3, 10 );
+    //FADE_SYNC();
+	//CALL_FIELD(fieldMajor, fieldMinor, part);
+	DUNGEON_PARTNER_RELOAD();
 	return 0;
 }
 
@@ -433,24 +469,29 @@ int RemoveMember()
 	int fieldMajor = FLD_GET_MAJOR();
 	int fieldMinor = FLD_GET_MINOR();
 	int part = GET_FIELD_PARTS_ID();
-	int member = SelectMember(false);
+	int member = SelectMember(false, false);
 	if (member == -1)
 		return -1;
 	PARTY_OUT( member );
-    FADE_IN( 3, 10 );
-    FADE_SYNC();
-	CALL_FIELD(fieldMajor, fieldMinor, part);
+    //FADE_IN( 3, 10 );
+    //FADE_SYNC();
+	//CALL_FIELD(fieldMajor, fieldMinor, part);
+	DUNGEON_PARTNER_RELOAD();
 	return 0;
 }
 
-int SelectMember(bool fuuka)
+int SelectMember(bool protag, bool fuuka)
 {
+	int mask = 0;
+	if (!protag)
+		mask = mask + 1;
 	if (!fuuka)
-		SEL_GENERIC_MASK(16, 0);
+		mask = mask + 32;
+	SEL_GENERIC_MASK(mask, 0);
 	int member = SEL_GENERIC_EX( 41, 40, 42, 1, 0 );
 	if (member == -1)
 		return -1;
-	return member + 2;
+	return member + 1;
 }
 
 
@@ -481,6 +522,11 @@ int FlagMenuDisplay()
 					return 0;
 			case 1:
 				if (EditCounter() == -1)
+					break;
+				else
+					return 0;
+			case 2:
+				if (EditDifficulty() == -1)
 					break;
 				else
 					return 0;
@@ -526,6 +572,22 @@ int EditCounter()
 	int newValue = NumberMenu(5, 39);
 	if (newValue != -1)
 		SET_COUNT(countNumber, newValue);
+	return 0;
+}
+
+int EditDifficulty()
+{
+	int difficulty = SEL_GENERIC_EX( 55, 56, 54, 1, 0 );
+	if (difficulty == -1)
+		return -1;
+	// Disable all difficulties
+	BIT_OFF( ( 17 + 0x40000000 ) );
+    BIT_OFF( ( 16 + 0x40000000 ) );
+    BIT_OFF( ( 15 + 0x40000000 ) );
+    BIT_OFF( ( 14 + 0x40000000 ) );
+    BIT_OFF( ( 13 + 0x40000000 ) );
+	// Enable set difficulty
+    BIT_ON( ( ( 13 + 0x40000000 ) + difficulty ) );
 	return 0;
 }
 

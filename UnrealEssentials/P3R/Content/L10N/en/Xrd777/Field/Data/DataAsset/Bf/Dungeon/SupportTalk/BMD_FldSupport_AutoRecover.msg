@@ -21,7 +21,7 @@
 
 [sel Mod_Menu_Options top]
 [uf 0 5 65278][uf 2 1]Original Function[uf 1 1][e]
-[uf 0 5 65278][uf 2 1]Fast Travel[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Town Map[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Facility Menu[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Call Menu[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Player Menu[uf 1 1][e]
@@ -140,6 +140,7 @@
 [sel Flag_Menu]
 [uf 0 5 65278][uf 2 1]Toggle Flag[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Edit Counter[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Change Difficulty[uf 1 1][e]
 
 [msg Flag_Menu_Text]
 [uf 0 5 65278][uf 2 1]Flag Menu[uf 1 1][e]
@@ -170,10 +171,12 @@
 [uf 0 5 65278][uf 2 1]Member List[uf 1 1][e]
 
 [sel Member_List]
+[uf 0 5 65278][uf 2 1][uf 4 3][uf 4 27 1 0][e]
 [uf 0 5 65278][uf 2 1]Yukari[uf 4 27 2 0][e]
 [uf 0 5 65278][uf 2 1]Junpei[uf 4 27 3 0][e]
 [uf 0 5 65278][uf 2 1]Akihiko[uf 4 27 4 0][e]
 [uf 0 5 65278][uf 2 1]Mitsuru[uf 4 27 5 0][e]
+[uf 0 5 65278][uf 2 1]Fuuka[uf 4 27 7 0][e]
 [uf 0 5 65278][uf 2 1]Aigis[uf 4 27 7 0][e]
 [uf 0 5 65278][uf 2 1]Ken[uf 4 27 8 0][e]
 [uf 0 5 65278][uf 2 1]Koromaru[uf 4 27 9 0][e]
@@ -213,6 +216,7 @@
 [sel Persona_Editor_List]
 [uf 0 5 65278][uf 2 1]Add Persona[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Delete All Current Personas[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Add Skill[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Evolve Member's Persona[uf 1 1][e]
 
 [msg Persona_Editor_Text]
@@ -223,3 +227,16 @@
 
 [msg Skill_ID_Text]
 [uf 0 5 65278][uf 2 1]Input Skill ID[uf 1 1][e]
+
+[sel Difficulty_List]
+[uf 0 5 65278][uf 2 1]Peaceful[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Easy[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Normal[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Hard[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Merciless[uf 1 1][e]
+
+[msg Diffculty_Editor_Text]
+[uf 0 5 65278][uf 2 1]Difficulties[uf 1 1][e]
+
+[msg Difficulty_Text]
+[uf 0 5 65278][uf 2 1]Select Difficulty[uf 1 1][e]
