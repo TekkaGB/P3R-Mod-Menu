@@ -1,9 +1,9 @@
-import( "Original_BF_FldUtility.bf" );
-import( "../../../../../../../../../ModMenu.flow" );
+import( "Original_BF_FldSupport_AutoRecover.bf" );
+import( "../../../../../../../../../../ModMenu.flow" );
 
-void Fld_Utility_Main_Proc_hook()
+void SUP_000_hook()
 {
-    while (true)
+        while (true)
         if (ModMenuDisplay() == 0)
             return;
 }
@@ -17,7 +17,7 @@ int ModMenuDisplay()
         {
             case 0:
                 // Original function
-                Fld_Utility_Main_Proc_unhooked();
+                SUP_000_unhooked();
                 return 0;
             case 1:
                 CALL_LMAP(0);
