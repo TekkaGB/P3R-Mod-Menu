@@ -12,7 +12,7 @@ int ModMenuDisplay()
 {
     while (true)
     {
-        int selection = SEL_GENERIC_EX( 5, 6, 7, 1, 0 );
+        int selection = SEL_GENERIC_EX( 5, 8, 7, 1, 0 );
         switch (selection)
         {
             case 0:

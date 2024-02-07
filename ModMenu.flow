@@ -222,36 +222,46 @@ int PlayerMenuDisplay()
 		switch (selection)
 		{
 			case 0:
+				if (EditPersonaDisplay() == -1)
+					break;
+				else
+					return 0;
+			case 1:
 				Rename();
 				return 0;
-			case 1:
+			case 2:
 				if (DateSelect() == -1)
 					break;
 				else
 					return 0;
-			case 2:
+			case 3:
 				if (ChangeYen() == -1)
 					break;
 				else
 					return 0;
-			case 3:
+			case 4:
 				if (ChangeItem() == -1)
 					break;
 				else
 					return 0;
-			case 4:
+			case 5:
 				if (AddMember() == -1)
 					break;
 				else
 					return 0;
-			case 5:
+			case 6:
 				if (RemoveMember() == -1)
 					break;
 				else
 					return 0;
-			case 6:
+			case 7:
 				SetMaxHPSP();
 				return 0;
+			case 8:
+				if (StatEdit() == -1)
+					break;
+				else
+					return 0;
             case -1:
                 return -1;
 		}
@@ -259,15 +269,77 @@ int PlayerMenuDisplay()
 	return -1;
 }
 
+int EditPersonaDisplay()
+{
+	while(true) 
+	{
+		int selection = SEL_GENERIC_EX( 51, 8, 50, 1, 0 );
+		switch (selection)
+		{
+			case 0:
+				if (AddPersona() == -1)
+					break;
+				else
+					return 0;
+			case 1:
+				CLEAR_PERSONA_STOCK();
+				return 0;
+			case 2:
+				if (EvolvePersona() == -1)
+					break;
+				else
+					return 0;
+            case -1:
+                return -1;
+		}
+	}
+	return -1;
+}
+
+int AddPersona()
+{
+	int persona = NumberMenu(3, 52);
+	if (persona == -1)
+		return -1;
+	ADD_PERSONA_STOCK( persona );
+	return 0;
+}
+
+int EvolvePersona()
+{
+	int member = SelectMember(true);
+	if (member == -1)
+		return -1;
+	PERSONA_EVOLUTION(member);
+	return 0;
+}
+
+int StatEdit()
+{
+	int type = SEL_GENERIC_EX( 48, 47, 46, 1, 0 );
+	if (type == -1)
+		return -1;
+	int increment = NumberMenu(2, 49);
+	switch (type)
+	{
+		case 0:
+			HERO_PARAM_ALL_ADD_EXP(increment, 0, 0);
+			break;
+		case 1:
+			HERO_PARAM_ALL_ADD_EXP(0, increment, 0);
+			break;
+		case 2:
+			HERO_PARAM_ALL_ADD_EXP(0, 0, increment);
+			break;
+	}
+	DISP_HERO_PARAM_METER();
+	DISP_HERO_PARAM_RANK_UP();
+	return 0;
+}
+
 int Rename()
 {
-	int fieldMajor = FLD_GET_MAJOR();
-	int fieldMinor = FLD_GET_MINOR();
-	int part = GET_FIELD_PARTS_ID();
 	CALL_NAME_ENTRY();
-    FADE_IN( 3, 10 );
-    FADE_SYNC();
-	CALL_FIELD(fieldMajor, fieldMinor, part);
 	return 0;
 }
 
@@ -302,7 +374,8 @@ int ChangeYen()
 		return -1;
 	int reset = 0 - GET_MONEY();
 	CALL_ADD_MONEY(reset);
-	CALL_ADD_MONEY(new_yen);
+	ADD_GET_ITEM_LIST_MONEY(new_yen);
+	OPEN_GET_ITEM();
 	return 0;
 }
 
@@ -342,31 +415,44 @@ int SelectItemType()
 
 int AddMember()
 {
-	int member = SelectMember();
+	int fieldMajor = FLD_GET_MAJOR();
+	int fieldMinor = FLD_GET_MINOR();
+	int part = GET_FIELD_PARTS_ID();
+	int member = SelectMember(false);
 	if (member == -1)
 		return -1;
 	PARTY_IN( member );
+    FADE_IN( 3, 10 );
+    FADE_SYNC();
+	CALL_FIELD(fieldMajor, fieldMinor, part);
 	return 0;
 }
 
 int RemoveMember()
 {
-	int member = SelectMember();
+	int fieldMajor = FLD_GET_MAJOR();
+	int fieldMinor = FLD_GET_MINOR();
+	int part = GET_FIELD_PARTS_ID();
+	int member = SelectMember(false);
 	if (member == -1)
 		return -1;
 	PARTY_OUT( member );
+    FADE_IN( 3, 10 );
+    FADE_SYNC();
+	CALL_FIELD(fieldMajor, fieldMinor, part);
 	return 0;
 }
 
-int SelectMember()
+int SelectMember(bool fuuka)
 {
+	if (!fuuka)
+		SEL_GENERIC_MASK(16, 0);
 	int member = SEL_GENERIC_EX( 41, 40, 42, 1, 0 );
 	if (member == -1)
 		return -1;
-	if (member < 4)
-		return member + 2;
-	return member + 3;
+	return member + 2;
 }
+
 
 void SetMaxHPSP()
 {

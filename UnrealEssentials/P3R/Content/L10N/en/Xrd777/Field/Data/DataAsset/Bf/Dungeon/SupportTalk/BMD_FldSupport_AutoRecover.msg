@@ -47,6 +47,7 @@
 [uf 0 5 65278][uf 2 1]Player Menu[uf 1 1][e]
 
 [sel Player_Menu]
+[uf 0 5 65278][uf 2 1]Persona Editor[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Change Name[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Change Date[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Change Yen[uf 1 1][e]
@@ -194,3 +195,31 @@
 
 [msg Item_Types_Text]
 [uf 0 5 65278][uf 2 1]Item Types[uf 1 1][e]
+
+[sel Social_Stat_List]
+[uf 0 5 65278][uf 2 1]Academics[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Charm[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Courage[uf 1 1][e]
+
+[msg Social_Stat_Text]
+[uf 0 5 65278][uf 2 1]Select Social Stat[uf 1 1][e]
+
+[msg Social_Stats_Text]
+[uf 0 5 65278][uf 2 1]Social Stats[uf 1 1][e]
+
+[msg Social_Stats_Increase_Text]
+[uf 0 5 65278][uf 2 1]Increase by how much?[uf 1 1][e]
+
+[sel Persona_Editor_List]
+[uf 0 5 65278][uf 2 1]Add Persona[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Delete All Current Personas[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Evolve Member's Persona[uf 1 1][e]
+
+[msg Persona_Editor_Text]
+[uf 0 5 65278][uf 2 1]Persona Editor[uf 1 1][e]
+
+[msg Persona_ID_Text]
+[uf 0 5 65278][uf 2 1]Input Persona ID[uf 1 1][e]
+
+[msg Skill_ID_Text]
+[uf 0 5 65278][uf 2 1]Input Skill ID[uf 1 1][e]
