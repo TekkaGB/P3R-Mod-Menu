@@ -331,10 +331,10 @@ int AddSkill()
 		persona = 16;
 	else if (member == 10)
 		persona = 15;
-	if (persona == -1)
+	if (member == -1)
 		return -1;
 	int skill = NumberMenu(4, 53);
-	if (persona == -1)
+	if (skill == -1)
 		return -1;
 	ADD_PERSONA_SKILL(member, persona, skill);
 	return 0;
