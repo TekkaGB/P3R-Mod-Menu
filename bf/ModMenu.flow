@@ -71,16 +71,21 @@ int CallMenuDisplay()
 				else
 					return 0;
 			case 5:
-				if (DungeonSelect() == -1)
+				if (BossBattleSelect() == -1)
 					break;
 				else
 					return 0;
 			case 6:
-				if (MovieSelect() == -1)
+				if (DungeonSelect() == -1)
 					break;
 				else
 					return 0;
 			case 7:
+				if (MovieSelect() == -1)
+					break;
+				else
+					return 0;
+			case 8:
 				if (BgmSelect() == -1)
 					break;
 				else
@@ -173,11 +178,57 @@ int KeyFreeEventSelect()
 
 int BattleSelect()
 {
+	int fieldMajor = FLD_GET_MAJOR();
+	int fieldMinor = FLD_GET_MINOR();
+	int part = GET_FIELD_PARTS_ID();
 	int major = NumberMenu(4, 15);
 	if (major == -1)
 		return -1;
 	CALL_FIELDBATTLE(major);
+    FADE_IN( 3, 10 );
+    FADE_SYNC();
+	CALL_FIELD(fieldMajor, fieldMinor, part);
 	return 0;
+}
+
+int BossBattleSelect()
+{
+	int fieldMajor = FLD_GET_MAJOR();
+	int fieldMinor = FLD_GET_MINOR();
+	int part = GET_FIELD_PARTS_ID();
+	int boss = SelectBoss();
+	if (boss == -1)
+		return -1;
+	CALL_EVENTBATTLE(0, 0, boss);
+    FADE_IN( 3, 10 );
+    FADE_SYNC();
+	CALL_FIELD(fieldMajor, fieldMinor, part);
+	return 0;
+}
+
+int SelectBoss()
+{
+	int selection = SEL_GENERIC_EX( 59, 58, 57, 1, 0 );
+	switch (selection)
+	{
+		case 0: return 701;
+		case 1: return 702;
+		case 2: return 703;
+		case 3: return 704;
+		case 4: return 705;
+		case 5: return 706;
+		case 6: return 707;
+		case 7: return 715;
+		case 8: return 708;
+		case 9: return 716;
+		case 10: return 717;
+		case 11: return 718;
+		case 12: return 709;
+		case 13: return 710;
+		case 14: return 725;
+		case -1: return -1;
+	}
+	return -1;
 }
 
 int DungeonSelect()
