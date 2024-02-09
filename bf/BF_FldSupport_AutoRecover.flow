@@ -1,5 +1,5 @@
 import( "Original_BF_FldSupport_AutoRecover.bf" );
-import( "../../../../../../../../../../ModMenu.flow" );
+import( "ModMenu.flow" );
 
 void SUP_000_hook()
 {

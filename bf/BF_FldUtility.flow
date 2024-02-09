@@ -1,5 +1,5 @@
 import( "Original_BF_FldUtility.bf" );
-import( "../../../../../../../../../ModMenu.flow" );
+import( "ModMenu.flow" );
 
 void Fld_Utility_Main_Proc_hook()
 {

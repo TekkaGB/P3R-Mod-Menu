@@ -65,7 +65,7 @@ int CallMenuDisplay()
 					break;
 				else
 					return 0;
-			case 4
+			case 4:
 				if (BattleSelect() == -1)
 					break;
 				else
