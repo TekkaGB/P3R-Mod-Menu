@@ -217,6 +217,7 @@
 [uf 0 5 65278][uf 2 1]Add Persona[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Delete All Current Personas[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Add Skill[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Remove Skill[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Evolve Member's Persona[uf 1 1][e]
 
 [msg Persona_Editor_Text]

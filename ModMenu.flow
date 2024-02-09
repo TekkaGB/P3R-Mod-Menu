@@ -1,5 +1,6 @@
 int FacilityMenuDisplay()
 {
+	SEL_GENERIC_MASK(0, 0);
 	int selection = SEL_GENERIC_EX( 27, 8, 26, 1, 0 );
 	int fieldMajor = FLD_GET_MAJOR();
 	int fieldMinor = FLD_GET_MINOR();
@@ -40,6 +41,7 @@ int CallMenuDisplay()
 {
 	while(true) 
 	{
+		SEL_GENERIC_MASK(0, 0);
         int selection = SEL_GENERIC_EX( 9, 8, 10, 1, 0 );
 		switch (selection)
 		{
@@ -218,6 +220,7 @@ int PlayerMenuDisplay()
 {
 	while(true) 
 	{
+		SEL_GENERIC_MASK(0, 0);
 		int selection = SEL_GENERIC_EX( 11, 8, 12, 1, 0 );
 		switch (selection)
 		{
@@ -273,6 +276,7 @@ int EditPersonaDisplay()
 {
 	while(true) 
 	{
+		SEL_GENERIC_MASK(0, 0);
 		int selection = SEL_GENERIC_EX( 51, 8, 50, 1, 0 );
 		switch (selection)
 		{
@@ -290,6 +294,11 @@ int EditPersonaDisplay()
 				else
 					return 0;
 			case 3:
+				if (RemoveSkill() == -1)
+					break;
+				else
+					return 0;
+			case 4:
 				if (EvolvePersona() == -1)
 					break;
 				else
@@ -333,10 +342,44 @@ int AddSkill()
 		persona = 15;
 	if (member == -1)
 		return -1;
+	if (persona == -1)
+		return -1;
 	int skill = NumberMenu(4, 53);
 	if (skill == -1)
 		return -1;
 	ADD_PERSONA_SKILL(member, persona, skill);
+	return 0;
+}
+
+int RemoveSkill()
+{
+	int member = SelectMember(true, true);
+	if (member == -1)
+		return -1;
+	int persona = -1;
+	// Input ID if protagonist
+	if (member == 1)
+		persona = NumberMenu(3, 52);
+	// Check for evolution
+	else if (member > 1 && member < 9)
+	{
+		if (CHK_PERSONA_EVOLUTION( member ))
+			persona = 2 * member - 2;
+		else
+			persona = 2 * member - 3;
+	}
+	else if (member == 9)
+		persona = 16;
+	else if (member == 10)
+		persona = 15;
+	if (member == -1)
+		return -1;
+	if (persona == -1)
+		return -1;
+	int skill = NumberMenu(4, 53);
+	if (skill == -1)
+		return -1;
+	REMOVE_PERSONA_SKILL(member, persona, skill);
 	return 0;
 }
 
@@ -351,6 +394,7 @@ int EvolvePersona()
 
 int StatEdit()
 {
+	SEL_GENERIC_MASK(0, 0);
 	int type = SEL_GENERIC_EX( 48, 47, 46, 1, 0 );
 	if (type == -1)
 		return -1;
@@ -396,6 +440,7 @@ int DateSelect()
 
 int ChooseMonth()
 {
+	SEL_GENERIC_MASK(0, 0);
 	int month = SEL_GENERIC_EX( 20, 19, 18, 1, 0 );
 	if (month != 18)
 		return month + 1;
@@ -442,6 +487,7 @@ int ChangeItem()
 
 int SelectItemType()
 {
+	SEL_GENERIC_MASK(0, 0);
 	int itemType = SEL_GENERIC_EX( 45, 44, 43, 1, 0 );
 	if (itemType == -1)
 		return -1;
@@ -457,9 +503,6 @@ int AddMember()
 	if (member == -1)
 		return -1;
 	PARTY_IN( member );
-    //FADE_IN( 3, 10 );
-    //FADE_SYNC();
-	//CALL_FIELD(fieldMajor, fieldMinor, part);
 	DUNGEON_PARTNER_RELOAD();
 	return 0;
 }
@@ -473,9 +516,6 @@ int RemoveMember()
 	if (member == -1)
 		return -1;
 	PARTY_OUT( member );
-    //FADE_IN( 3, 10 );
-    //FADE_SYNC();
-	//CALL_FIELD(fieldMajor, fieldMinor, part);
 	DUNGEON_PARTNER_RELOAD();
 	return 0;
 }
@@ -512,6 +552,7 @@ int FlagMenuDisplay()
 {
 	while(true) 
 	{
+		SEL_GENERIC_MASK(0, 0);
         int selection = SEL_GENERIC_EX( 33, 8, 32, 1, 0 );
 		switch (selection)
 		{
@@ -577,6 +618,7 @@ int EditCounter()
 
 int EditDifficulty()
 {
+	SEL_GENERIC_MASK(0, 0);
 	int difficulty = SEL_GENERIC_EX( 55, 56, 54, 1, 0 );
 	if (difficulty == -1)
 		return -1;
@@ -598,6 +640,7 @@ int NumberMenu(int digitCount, int nameMsgId)
     for (int i = 0; i < digitCount; i++)
     {
 		SET_MSG_VAR(0, digitCount, 0);
+		SEL_GENERIC_MASK(0, 0);
         int digit = SEL_GENERIC_EX( nameMsgId, 14, 13, 1, 0 );
 
         if (digit == -1)
