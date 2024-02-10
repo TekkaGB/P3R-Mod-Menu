@@ -36,7 +36,7 @@
 [sel Call_Menu]
 [uf 0 5 65278][uf 2 1]Call Field[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Call Event[uf 1 1][e]
-[uf 0 5 65278][uf 2 1]Call Social Link Event[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Call Commu Event[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Call Key Free Event[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Call Battle[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Call Boss Battle[uf 1 1][e]
@@ -185,8 +185,8 @@
 
 [sel Item_Type_List]
 [uf 0 5 65278][uf 2 1]Weapons[uf 1 1][e]
-[uf 0 5 65278][uf 2 1]Armor (Body)[uf 1 1][e]
-[uf 0 5 65278][uf 2 1]Armor (Footwear)[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Armor[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Footwear[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Accessories[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Consumables[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Key Items[uf 1 1][e]
@@ -266,3 +266,17 @@
 
 [msg Bosses_Text]
 [uf 0 5 65278][uf 2 1]Bosses[uf 1 1][e]
+
+[sel Flag_Type_List]
+[uf 0 5 65278][uf 2 1]Event[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Commu[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Field[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Battle[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]System[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Progress[uf 1 1][e]
+
+[msg Flag_Type_Text]
+[uf 0 5 65278][uf 2 1]Select Flag Type[uf 1 1][e]
+
+[msg Flag_Types_Text]
+[uf 0 5 65278][uf 2 1]Flag Types[uf 1 1][e]

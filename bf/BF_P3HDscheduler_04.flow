@@ -1,0 +1,7 @@
+import ( "Original_BF_P3HDscheduler_04.bf" );
+
+void sdl04_06_EarlyMorning_0_hook()
+{
+    sdl04_06_EarlyMorning_0_unhooked();
+    BIT_ON( ( 43 + 0x40000000 ) );
+}

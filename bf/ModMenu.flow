@@ -632,13 +632,18 @@ int FlagMenuDisplay()
 
 int ToggleFlag()
 {
-	int flag = NumberMenu(10, 37);
+	int flagType = SelectFlagType();
+	if (flagType == -1)
+		return -1;
+	int flag = NumberMenu(3, 37);
 	if (flag == -1)
 		return -1;
+	flag = flag + flagType;
 	SET_MSG_VAR(0, flag, 0);
 	SET_MSG_VAR(1, BIT_CHK(flag), 0);
 	MSG_WND_DSP();
 	MSG(35, 0);
+	SEL_DEFKEY(18, 1);
 	int toggle = SEL(34);
 	MSG_WND_CLS();
 	if (toggle == 0)
@@ -650,6 +655,15 @@ int ToggleFlag()
 		BIT_OFF(flag);
 	}
 	return 0;
+}
+
+int SelectFlagType()
+{
+	SEL_GENERIC_MASK(0, 0);
+	int flagType = SEL_GENERIC_EX( 62, 61, 60, 1, 0 );
+	if (flagType == -1)
+		return -1;
+	return flagType * 0x10000000;
 }
 
 int EditCounter()

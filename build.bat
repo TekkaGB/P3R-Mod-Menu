@@ -26,5 +26,10 @@ if exist .\UnrealEssentials\P3R\Content\Xrd777\Field\Data\DataAsset\Bf\Dungeon\S
     move /y .\UnrealEssentials\P3R\Content\Xrd777\Field\Data\DataAsset\Bf\Dungeon\SupportTalk\BF_FldSupport_AutoRecover_new.uasset .\UnrealEssentials\P3R\Content\Xrd777\Field\Data\DataAsset\Bf\Dungeon\SupportTalk\BF_FldSupport_AutoRecover.uasset
     del /s /q .\UnrealEssentials\P3R\Content\Xrd777\Field\Data\DataAsset\Bf\Dungeon\SupportTalk\BF_FldSupport_AutoRecover_new
 )
+%COMPILER% .\bf\BF_P3HDscheduler_04.flow -Compile -OutFormat V4BE -Library P3RE -Encoding UTF-8 -Hook -SumBits -UPatch .\UnrealEssentials\P3R\Content\Xrd777\Schedule\Data\DataAsset\Bf\BF_P3HDscheduler_04.uasset -Out .\UnrealEssentials\P3R\Content\Xrd777\Schedule\Data\DataAsset\Bf\BF_P3HDscheduler_04_new
+if exist .\UnrealEssentials\P3R\Content\Xrd777\Schedule\Data\DataAsset\Bf\BF_P3HDscheduler_04_new.uasset (
+    move /y .\UnrealEssentials\P3R\Content\Xrd777\Schedule\Data\DataAsset\Bf\BF_P3HDscheduler_04_new.uasset .\UnrealEssentials\P3R\Content\Xrd777\Schedule\Data\DataAsset\Bf\BF_P3HDscheduler_04.uasset
+    del /s /q .\UnrealEssentials\P3R\Content\Xrd777\Schedule\Data\DataAsset\Bf\BF_P3HDscheduler_04_new
+)
 
 del /s /q .\AtlusScriptCompiler.log
