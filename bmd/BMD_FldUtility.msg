@@ -258,8 +258,8 @@
 [uf 0 5 65278][uf 2 1]Chidori[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Jin[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Takaya[uf 1 1][e]
-[uf 0 5 65278][uf 2 1]Nyx[uf 1 1][e]
-[uf 0 5 65278][uf 2 1]Nyx[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Nyx Avatar[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Nyx Core[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Elizabeth[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Reaper[uf 1 1][e]
 

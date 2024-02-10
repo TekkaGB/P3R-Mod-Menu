@@ -635,10 +635,10 @@ int ToggleFlag()
 	int flagType = SelectFlagType();
 	if (flagType == -1)
 		return -1;
-	int flag = NumberMenu(3, 37);
+	int flag = NumberMenu(4, 37);
 	if (flag == -1)
 		return -1;
-	flag = flag + flagType;
+	int actualFlag = flag + flagType;
 	SET_MSG_VAR(0, flag, 0);
 	SET_MSG_VAR(1, BIT_CHK(flag), 0);
 	MSG_WND_DSP();
@@ -648,11 +648,11 @@ int ToggleFlag()
 	MSG_WND_CLS();
 	if (toggle == 0)
 	{
-		BIT_ON(flag);
+		BIT_ON(actualFlag);
 	}
 	else if (toggle == 1)
 	{
-		BIT_OFF(flag);
+		BIT_OFF(actualFlag);
 	}
 	return 0;
 }
