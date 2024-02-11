@@ -282,37 +282,42 @@ int PlayerMenuDisplay()
 				else
 					return 0;
 			case 1:
+				if (ChangeLevel() == -1)
+					break;
+				else
+					return 0;
+			case 2:
 				Rename();
 				return 0;
-			case 2:
+			case 3:
 				if (DateSelect() == -1)
 					break;
 				else
 					return 0;
-			case 3:
+			case 4:
 				if (ChangeYen() == -1)
 					break;
 				else
 					return 0;
-			case 4:
+			case 5:
 				if (ChangeItem() == -1)
 					break;
 				else
 					return 0;
-			case 5:
+			case 6:
 				if (AddMember() == -1)
 					break;
 				else
 					return 0;
-			case 6:
+			case 7:
 				if (RemoveMember() == -1)
 					break;
 				else
 					return 0;
-			case 7:
+			case 8:
 				SetMaxHPSP();
 				return 0;
-			case 8:
+			case 9:
 				if (StatEdit() == -1)
 					break;
 				else
@@ -341,16 +346,21 @@ int EditPersonaDisplay()
 				CLEAR_PERSONA_STOCK();
 				return 0;
 			case 2:
-				if (AddSkill() == -1)
+				if (ChangePersonaLevel() == -1)
 					break;
 				else
 					return 0;
 			case 3:
-				if (RemoveSkill() == -1)
+				if (AddSkill() == -1)
 					break;
 				else
 					return 0;
 			case 4:
+				if (RemoveSkill() == -1)
+					break;
+				else
+					return 0;
+			case 5:
 				if (EvolvePersona() == -1)
 					break;
 				else
@@ -435,12 +445,56 @@ int RemoveSkill()
 	return 0;
 }
 
+int ChangePersonaLevel()
+{
+	int member = SelectMember(true, true);
+	if (member == -1)
+		return -1;
+	int persona = -1;
+	// Input ID if protagonist
+	if (member == 1)
+		persona = NumberMenu(3, 52);
+	// Check for evolution
+	else if (member > 1 && member < 9)
+	{
+		if (CHK_PERSONA_EVOLUTION( member ))
+			persona = 2 * member - 2;
+		else
+			persona = 2 * member - 3;
+	}
+	else if (member == 9)
+		persona = 16;
+	else if (member == 10)
+		persona = 15;
+	if (member == -1)
+		return -1;
+	if (persona == -1)
+		return -1;
+	int level = NumberMenu(2, 63);
+	if (level == -1)
+		return -1;
+	SET_PERSONA_LV(member, persona, level);
+	return 0;
+}
+
 int EvolvePersona()
 {
 	int member = SelectMember(false, true);
 	if (member == -1)
 		return -1;
 	PERSONA_EVOLUTION(member);
+	return 0;
+}
+
+int ChangeLevel()
+{
+	int member = SelectMember(true, true);
+	if (member == -1)
+		return -1;
+	int level = NumberMenu(2, 63);
+	if (level == -1)
+		return -1;
+	SET_HUMAN_LV(member, level);
 	return 0;
 }
 

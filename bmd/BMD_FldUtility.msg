@@ -50,6 +50,7 @@
 
 [sel Player_Menu]
 [uf 0 5 65278][uf 2 1]Persona Editor[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Change Level[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Change Name[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Change Date[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Change Yen[uf 1 1][e]
@@ -219,6 +220,7 @@
 [sel Persona_Editor_List]
 [uf 0 5 65278][uf 2 1]Add Persona[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Delete All Current Personas[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Change Persona Level[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Add Skill[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Remove Skill[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Evolve Member's Persona[uf 1 1][e]
@@ -282,3 +284,6 @@
 
 [msg Flag_Types_Text]
 [uf 0 5 65278][uf 2 1]Flag Types[uf 1 1][e]
+
+[msg Level_Text]
+[uf 0 5 65278][uf 2 1]Input Level[uf 1 1][e]
