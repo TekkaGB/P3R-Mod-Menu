@@ -261,7 +261,7 @@ int MovieSelect()
 
 int BgmSelect()
 {
-	int bgm = NumberMenu(3, 24);
+	int bgm = NumberMenu(5, 24);
 	if (bgm == -1)
 		return -1;
 	BGM(bgm);
