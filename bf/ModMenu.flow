@@ -282,42 +282,47 @@ int PlayerMenuDisplay()
 				else
 					return 0;
 			case 1:
-				if (ChangeLevel() == -1)
+				if (EditCommuDisplay() == -1)
 					break;
 				else
 					return 0;
 			case 2:
+				if (ChangeLevel() == -1)
+					break;
+				else
+					return 0;
+			case 3:
 				Rename();
 				return 0;
-			case 3:
+			case 4:
 				if (DateSelect() == -1)
 					break;
 				else
 					return 0;
-			case 4:
+			case 5:
 				if (ChangeYen() == -1)
 					break;
 				else
 					return 0;
-			case 5:
+			case 6:
 				if (ChangeItem() == -1)
 					break;
 				else
 					return 0;
-			case 6:
+			case 7:
 				if (AddMember() == -1)
 					break;
 				else
 					return 0;
-			case 7:
+			case 8:
 				if (RemoveMember() == -1)
 					break;
 				else
 					return 0;
-			case 8:
+			case 9:
 				SetMaxHPSP();
 				return 0;
-			case 9:
+			case 10:
 				if (StatEdit() == -1)
 					break;
 				else
@@ -505,6 +510,8 @@ int StatEdit()
 	if (type == -1)
 		return -1;
 	int increment = NumberMenu(2, 49);
+	if (increment == -1)
+		return -1;
 	switch (type)
 	{
 		case 0:
@@ -519,6 +526,70 @@ int StatEdit()
 	}
 	DISP_HERO_PARAM_METER();
 	DISP_HERO_PARAM_RANK_UP();
+	return 0;
+}
+
+int EditCommuDisplay()
+{
+	while(true) 
+	{
+		SEL_GENERIC_MASK(0, 0);
+		int selection = SEL_GENERIC_EX( 71, 8, 70, 1, 0 );
+		switch (selection)
+		{
+			case 0:
+				if (AddCommu() == -1)
+					break;
+				else
+					return 0;
+			case 1:
+				if (RankUpCommu() == -1)
+					break;
+				else
+					return 0;
+			case 2:
+				if (ChangeCommuLevel() == -1)
+					break;
+				else
+					return 0;
+            case -1:
+                return -1;
+		}
+	}
+	return -1;
+}
+
+int AddCommu()
+{
+	int commu = SEL_GENERIC_EX( 66, 65, 64, 1, 0 );
+	if (commu == -1)
+		return -1;
+	CMM_SET_LV(commu + 1, 1 );
+    CMM_RANKUP( commu + 1, 0, 0 );
+	return 0;
+}
+
+int RankUpCommu()
+{
+	int commu = SEL_GENERIC_EX( 66, 65, 64, 1, 0 );
+	if (commu == -1)
+		return -1;
+	int rank = CMM_GET_LV( commu + 1 );
+	CMM_SET_LV(commu + 1, rank + 1 );
+    CMM_RANKUP( commu + 1, 1, 0 );
+	return 0;
+}
+
+int ChangeCommuLevel()
+{
+	int commu = SEL_GENERIC_EX( 66, 65, 64, 1, 0 );
+	if (commu == -1)
+		return -1;
+	int rank = SEL_GENERIC_EX( 68, 69, 67, 1, 0 );
+	if (rank == -1)
+		return -1;
+	CMM_SET_LV(commu + 1, rank + 1 );
+    CMM_RANKUP( commu + 1, 1, 0 );
 	return 0;
 }
 
