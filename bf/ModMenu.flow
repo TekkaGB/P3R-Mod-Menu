@@ -744,6 +744,12 @@ int FlagMenuDisplay()
 					break;
 				else
 					return 0;
+			case 3:
+				ToggleDisplay();
+				return 0;
+			case 4:
+				SwitchNavi();
+				return 0;
             case -1:
                 return -1;
 		}
@@ -761,7 +767,7 @@ int ToggleFlag()
 		return -1;
 	int actualFlag = flag + flagType;
 	SET_MSG_VAR(0, flag, 0);
-	SET_MSG_VAR(1, BIT_CHK(flag), 0);
+	SET_MSG_VAR(1, BIT_CHK(actualFlag), 0);
 	MSG_WND_DSP();
 	MSG(35, 0);
 	SEL_DEFKEY(18, 1);
@@ -818,6 +824,31 @@ int EditDifficulty()
 	// Enable set difficulty
     BIT_ON( ( ( 13 + 0x40000000 ) + difficulty ) );
 	return 0;
+}
+
+void ToggleDisplay()
+{
+	for (int i = 491; i <= 496; i++)
+		BIT_ON( i + 0x50000000 );
+	BIT_ON( ( 115 + 0x40000000 ) );
+	BTL_PARTYPANEL_HIDE();
+	CLOSE_SUPPORT_PARTY_PANEL();
+	SET_HIDE_MINIMAP( 1 );
+	BTL_UI_HIDDEN();
+}
+
+void SwitchNavi()
+{
+	if (BIT_CHK( 1 + 0x30000000 ))
+	{
+		BIT_OFF( 1 + 0x30000000 );
+		BIT_ON( 5 + 0x30000000 );
+	}
+	else if (BIT_CHK( 5 + 0x30000000 ))
+	{
+		BIT_OFF( 5 + 0x30000000 );
+		BIT_ON( 1 + 0x30000000 );
+	}
 }
 
 int NumberMenu(int digitCount, int nameMsgId)

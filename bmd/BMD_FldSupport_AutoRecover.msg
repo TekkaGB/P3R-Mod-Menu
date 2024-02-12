@@ -36,7 +36,7 @@
 [sel Call_Menu]
 [uf 0 5 65278][uf 2 1]Call Field[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Call Event[uf 1 1][e]
-[uf 0 5 65278][uf 2 1]Call Commu Event[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Call Social Link Event[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Call Key Free Event[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Call Battle[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Call Boss Battle[uf 1 1][e]
@@ -49,7 +49,7 @@
 
 [sel Player_Menu]
 [uf 0 5 65278][uf 2 1]Persona Editor[uf 1 1][e]
-[uf 0 5 65278][uf 2 1]Commu Editor[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Social Link Editor[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Change Level[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Change Name[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Change Date[uf 1 1][e]
@@ -145,6 +145,8 @@
 [uf 0 5 65278][uf 2 1]Toggle Flag[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Edit Counter[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Change Difficulty[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Disable Display (Don't Save)[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Switch Navi[uf 1 1][e]
 
 [msg Flag_Menu_Text]
 [uf 0 5 65278][uf 2 1]Flag Menu[uf 1 1][e]
@@ -180,7 +182,7 @@
 [uf 0 5 65278][uf 2 1]Junpei[uf 4 27 3 0][e]
 [uf 0 5 65278][uf 2 1]Akihiko[uf 4 27 4 0][e]
 [uf 0 5 65278][uf 2 1]Mitsuru[uf 4 27 5 0][e]
-[uf 0 5 65278][uf 2 1]Fuuka[uf 4 27 7 0][e]
+[uf 0 5 65278][uf 2 1]Fuuka[uf 4 27 6 0][e]
 [uf 0 5 65278][uf 2 1]Aigis[uf 4 27 7 0][e]
 [uf 0 5 65278][uf 2 1]Ken[uf 4 27 8 0][e]
 [uf 0 5 65278][uf 2 1]Koromaru[uf 4 27 9 0][e]
@@ -273,7 +275,7 @@
 
 [sel Flag_Type_List]
 [uf 0 5 65278][uf 2 1]Event[uf 1 1][e]
-[uf 0 5 65278][uf 2 1]Commu[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Social Link[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Field[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Battle[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]System[uf 1 1][e]
@@ -313,10 +315,10 @@
 [uf 0 5 65278][uf 2 1]Aigis (Aeon)[uf 4 27 7 0][uf 1 1][e]
 
 [msg Commu_Text]
-[uf 0 5 65278][uf 2 1]Select Commu[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Select Social Link[uf 1 1][e]
 
 [msg Commu_List_Text]
-[uf 0 5 65278][uf 2 1]Commu List[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Social Link List[uf 1 1][e]
 
 [sel Rank_Options]
 [uf 0 5 65278][uf 2 1]1[uf 1 1][e]
@@ -342,4 +344,4 @@
 [uf 0 5 65278][uf 2 1]Set Social Link Rank[uf 1 1][e]
 
 [msg Commu_Editor_Text]
-[uf 0 5 65278][uf 2 1]Commu Editor[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Social Link Editor[uf 1 1][e]
