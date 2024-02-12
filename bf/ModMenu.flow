@@ -673,12 +673,10 @@ int SelectItemType()
 
 int AddMember()
 {
-	int fieldMajor = FLD_GET_MAJOR();
-	int fieldMinor = FLD_GET_MINOR();
-	int part = GET_FIELD_PARTS_ID();
 	int member = SelectMember(false, false);
 	if (member == -1)
 		return -1;
+	BIT_ON( (member - 1) + 0x40000000 );
 	PARTY_IN( member );
 	DUNGEON_PARTNER_RELOAD();
 	return 0;
@@ -686,12 +684,10 @@ int AddMember()
 
 int RemoveMember()
 {
-	int fieldMajor = FLD_GET_MAJOR();
-	int fieldMinor = FLD_GET_MINOR();
-	int part = GET_FIELD_PARTS_ID();
 	int member = SelectMember(false, false);
 	if (member == -1)
 		return -1;
+	BIT_OFF( (member - 1) + 0x40000000 );
 	PARTY_OUT( member );
 	DUNGEON_PARTNER_RELOAD();
 	return 0;

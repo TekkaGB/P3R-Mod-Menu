@@ -1,5 +1,7 @@
 ::Replace with path to local uasset supported AtlusScriptCompiler.exe
 set COMPILER="D:\Modding\Persona\AtlusScriptToolchain\AtlusScriptCompiler.exe"
+set RELOADED="D:\Reloaded II\Reloaded-II.exe"
+set GAME="D:\SteamLibrary\steamapps\common\P3R\P3R\Binaries\Win64\P3R.exe"
 
 ::Compile bmd uassets for every language
 for /d %%i in (.\UnrealEssentials\P3R\Content\L10N\*) do (
@@ -33,3 +35,6 @@ if exist .\UnrealEssentials\P3R\Content\Xrd777\Schedule\Data\DataAsset\Bf\BF_P3H
 )
 
 del /s /q .\AtlusScriptCompiler.log
+
+::Launch game
+%RELOADED% --launch %GAME%
