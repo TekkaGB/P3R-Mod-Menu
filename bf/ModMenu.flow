@@ -320,9 +320,26 @@ int PlayerMenuDisplay()
 				else
 					return 0;
 			case 9:
+				if (AddTheurgia() == -1)
+					break;
+				else
+					return 0;
+			case 10:
+				if (RemoveTheurgia() == -1)
+					break;
+				else
+					return 0;
+			case 11:
+				RECOVERY_ALL();
+				RECOVERY_EFFECT_FIELD_PARTY_PANEL();
+				return 0;
+			case 12:
+				RecoverTP();
+				return 0;
+			case 13:
 				SetMaxHPSP();
 				return 0;
-			case 10:
+			case 14:
 				if (StatEdit() == -1)
 					break;
 				else
@@ -351,21 +368,24 @@ int EditPersonaDisplay()
 				CLEAR_PERSONA_STOCK();
 				return 0;
 			case 2:
+				BIT_ON( 66 + 0x40000000 );
+				return 0;
+			case 3:
 				if (ChangePersonaLevel() == -1)
 					break;
 				else
 					return 0;
-			case 3:
+			case 4:
 				if (AddSkill() == -1)
 					break;
 				else
 					return 0;
-			case 4:
+			case 5:
 				if (RemoveSkill() == -1)
 					break;
 				else
 					return 0;
-			case 5:
+			case 6:
 				if (EvolvePersona() == -1)
 					break;
 				else
@@ -707,6 +727,41 @@ int SelectMember(bool protag, bool fuuka)
 	return member + 1;
 }
 
+int AddTheurgia()
+{
+	int member = SelectMember(true, true);
+	if (member == -1)
+		return -1;
+	int skill = NumberMenu(4, 53);
+	if (skill == -1)
+		return -1;
+	BIT_ON( 4 + 0x30000000 );
+	ADD_SPECIAL_SKILL(member, skill);
+	return 0;
+}
+
+int RemoveTheurgia()
+{
+	int member = SelectMember(true, true);
+	if (member == -1)
+		return -1;
+	int skill = NumberMenu(4, 53);
+	if (skill == -1)
+		return -1;
+	BIT_ON( 4 + 0x30000000 );
+	REMOVE_SPECIAL_SKILL(member, skill);
+	return 0;
+}
+
+void RecoverTP()
+{
+	BIT_ON( 4 + 0x30000000 );
+	for ( int i = 0; i <= 10; i++ ) 
+	{
+		int tp = GET_MAXTP(i);
+		SET_TP(i, tp);
+	}
+}
 
 void SetMaxHPSP()
 {
@@ -830,6 +885,11 @@ void ToggleDisplay()
 {
 	for (int i = 491; i <= 496; i++)
 		BIT_ON( i + 0x50000000 );
+	for (int i = 145; i <= 147; i++)
+		BIT_ON( i + 0x40000000 );
+	// Disable navi
+	BIT_OFF( 1 + 0x30000000 );
+	BIT_OFF( 5 + 0x30000000 );
 	BIT_ON( ( 115 + 0x40000000 ) );
 	BTL_PARTYPANEL_HIDE();
 	CLOSE_SUPPORT_PARTY_PANEL();
