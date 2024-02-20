@@ -825,7 +825,6 @@ int ToggleFlag()
 	SET_MSG_VAR(1, BIT_CHK(actualFlag), 0);
 	MSG_WND_DSP();
 	MSG(35, 0);
-	SEL_DEFKEY(18, 1);
 	int toggle = SEL(34);
 	MSG_WND_CLS();
 	if (toggle == 0)
@@ -857,10 +856,12 @@ int EditCounter()
 	SET_MSG_VAR(1, GET_COUNT(countNumber), 0);
 	MSG_WND_DSP();
 	MSG(36, 0);
+	MSG(73, 0);
+	int sign = SEL(72);
 	MSG_WND_CLS();
 	int newValue = NumberMenu(5, 39);
 	if (newValue != -1)
-		SET_COUNT(countNumber, newValue);
+		SET_COUNT(countNumber, (-2 * sign + 1) * newValue);
 	return 0;
 }
 

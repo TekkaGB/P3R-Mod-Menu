@@ -351,3 +351,10 @@
 
 [msg Commu_Editor_Text]
 [uf 0 5 65278][uf 2 1]Social Link Editor[uf 1 1][e]
+
+[sel Sign]
+[uf 0 5 65278][uf 2 1]+[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]-[uf 1 1][e]
+
+[msg Sign_Text]
+[uf 0 5 65278][uf 2 1]Select a sign[uf 1 1][e]
