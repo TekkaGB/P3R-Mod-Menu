@@ -231,6 +231,7 @@
 [uf 0 5 65278][uf 2 1]Add Skill[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Remove Skill[uf 1 1][e]
 [uf 0 5 65278][uf 2 1]Evolve Member's Persona[uf 1 1][e]
+[uf 0 5 65278][uf 2 1]Complete Compendium (Deletes Current Stock)[uf 1 1][e]
 
 [msg Persona_Editor_Text]
 [uf 0 5 65278][uf 2 1]Persona Editor[uf 1 1][e]
