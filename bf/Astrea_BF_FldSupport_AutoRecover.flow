@@ -1,4 +1,4 @@
-import( "Original_BF_FldSupport_AutoRecover.bf" );
+import( "Original_Astrea_BF_FldSupport_AutoRecover.bf" );
 import( "ModMenu.flow" );
 
 void SUP_000_hook()
@@ -21,24 +21,21 @@ int ModMenuDisplay()
                 SUP_000_unhooked();
                 return 0;
             case 1:
-                CALL_LMAP(0);
-                return 0;
-            case 2:
                 if (FacilityMenuDisplay() == -1)
                     break;
                 else
                     return 0;
+            case 2:
+                if (AigisCallMenuDisplay() == -1)
+                    break;
+                else
+                    return 0;
             case 3:
-                if (CallMenuDisplay() == -1)
+                if (AigisPlayerMenuDisplay() == -1)
                     break;
                 else
                     return 0;
             case 4:
-                if (PlayerMenuDisplay() == -1)
-                    break;
-                else
-                    return 0;
-            case 5:
                 if (FlagMenuDisplay() == -1)
                     break;
                 else

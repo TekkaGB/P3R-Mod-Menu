@@ -1,0 +1,51 @@
+import( "Original_Xrd777_BF_FldSupport_AutoRecover.bf" );
+import( "ModMenu.flow" );
+
+void SUP_000_hook()
+{
+        while (true)
+        if (ModMenuDisplay() == 0)
+            return;
+}
+
+int ModMenuDisplay()
+{
+    while (true)
+    {
+	    SEL_GENERIC_MASK(0, 0);
+        int selection = SEL_GENERIC_EX( 5, 8, 7, 1, 0 );
+        switch (selection)
+        {
+            case 0:
+                // Original function
+                SUP_000_unhooked();
+                return 0;
+            case 1:
+                CALL_LMAP(0);
+                return 0;
+            case 2:
+                if (FacilityMenuDisplay() == -1)
+                    break;
+                else
+                    return 0;
+            case 3:
+                if (CallMenuDisplay() == -1)
+                    break;
+                else
+                    return 0;
+            case 4:
+                if (PlayerMenuDisplay() == -1)
+                    break;
+                else
+                    return 0;
+            case 5:
+                if (FlagMenuDisplay() == -1)
+                    break;
+                else
+                    return 0;
+            case -1:
+                return 0;
+        }
+    }
+    return -1;
+}

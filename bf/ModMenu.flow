@@ -97,6 +97,66 @@ int CallMenuDisplay()
 	return -1;
 }
 
+int AigisCallMenuDisplay()
+{
+	while(true) 
+	{
+		SEL_GENERIC_MASK(0, 0);
+        int selection = SEL_GENERIC_EX( 9, 8, 10, 1, 0 );
+		switch (selection)
+		{
+			case 0:
+				if (FieldSelect() == -1)
+					break;
+				else
+					return 0;
+			case 1:
+				if (EventSelect() == -1)
+					break;
+				else
+					return 0;
+			case 2:
+				if (CmmEventSelect() == -1)
+					break;
+				else
+					return 0;
+			case 3:
+				if (KeyFreeEventSelect() == -1)
+					break;
+				else
+					return 0;
+			case 4:
+				if (BattleSelect() == -1)
+					break;
+				else
+					return 0;
+			case 5:
+				if (AigisBossBattleSelect() == -1)
+					break;
+				else
+					return 0;
+			case 6:
+				if (DungeonSelect() == -1)
+					break;
+				else
+					return 0;
+			case 7:
+				if (MovieSelect() == -1)
+					break;
+				else
+					return 0;
+			case 8:
+				if (BgmSelect() == -1)
+					break;
+				else
+					return 0;
+            case -1:
+                return -1;
+		}
+	}
+	return -1;
+}
+
 int FieldSelect()
 {
 	int major = NumberMenu(3, 15);
@@ -199,7 +259,22 @@ int BossBattleSelect()
 	int boss = SelectBoss();
 	if (boss == -1)
 		return -1;
-	CALL_EVENTBATTLE(0, 0, boss);
+	CALL_FIELDBATTLE(boss);
+    FADE_IN( 3, 10 );
+    FADE_SYNC();
+	CALL_FIELD(fieldMajor, fieldMinor, part);
+	return 0;
+}
+
+int AigisBossBattleSelect()
+{
+	int fieldMajor = FLD_GET_MAJOR();
+	int fieldMinor = FLD_GET_MINOR();
+	int part = GET_FIELD_PARTS_ID();
+	int boss = AigisSelectBoss();
+	if (boss == -1)
+		return -1;
+	CALL_FIELDBATTLE(boss);
     FADE_IN( 3, 10 );
     FADE_SYNC();
 	CALL_FIELD(fieldMajor, fieldMinor, part);
@@ -232,6 +307,40 @@ int SelectBoss()
 	return -1;
 }
 
+int AigisSelectBoss()
+{
+	int selection = SEL_GENERIC_EX( 59, 58, 75, 1, 0 );
+	switch (selection)
+	{
+		case 0: return 701;
+		case 1: return 702;
+		case 2: return 703;
+		case 3: return 704;
+		case 4: return 705;
+		case 5: return 706;
+		case 6: return 707;
+		case 7: return 715;
+		case 8: return 708;
+		case 9: return 716;
+		case 10: return 717;
+		case 11: return 718;
+		case 12: return 709;
+		case 13: return 710;
+		case 14: return 725;
+		case 15: return 727;
+		case 16: return 1201;
+		case 17: return 1202;
+		case 18: return 1203;
+		case 19: return 1204;
+		case 20: return 1205;
+		case 21: return 1206;
+		case 22: return 1207;
+		case 23: return 1208;
+		case -1: return -1;
+	}
+	return -1;
+}
+
 int DungeonSelect()
 {
 	int floor = NumberMenu(3, 25);
@@ -248,7 +357,7 @@ int MovieSelect()
 	int fieldMajor = FLD_GET_MAJOR();
 	int fieldMinor = FLD_GET_MINOR();
 	int part = GET_FIELD_PARTS_ID();
-	int movie = NumberMenu(2, 23);
+	int movie = NumberMenu(3, 23);
 	if (movie == -1)
 		return -1;
 	MOVIE_PLAY( movie );
@@ -351,6 +460,84 @@ int PlayerMenuDisplay()
 	return -1;
 }
 
+int AigisPlayerMenuDisplay()
+{
+	while(true) 
+	{
+		SEL_GENERIC_MASK(0, 0);
+		int selection = SEL_GENERIC_EX( 11, 8, 12, 1, 0 );
+		switch (selection)
+		{
+			case 0:
+				if (AigisEditPersonaDisplay() == -1)
+					break;
+				else
+					return 0;
+			case 1:
+				if (EditCommuDisplay() == -1)
+					break;
+				else
+					return 0;
+			case 2:
+				if (AigisChangeLevel() == -1)
+					break;
+				else
+					return 0;
+			case 3:
+				Rename();
+				return 0;
+			case 4:
+				if (ChangeYen() == -1)
+					break;
+				else
+					return 0;
+			case 5:
+				if (ChangeItem() == -1)
+					break;
+				else
+					return 0;
+			case 6:
+				if (AigisAddMember() == -1)
+					break;
+				else
+					return 0;
+			case 7:
+				if (AigisRemoveMember() == -1)
+					break;
+				else
+					return 0;
+			case 8:
+				if (AigisAddTheurgia() == -1)
+					break;
+				else
+					return 0;
+			case 9:
+				if (AigisRemoveTheurgia() == -1)
+					break;
+				else
+					return 0;
+			case 10:
+				RECOVERY_ALL();
+				RECOVERY_EFFECT_FIELD_PARTY_PANEL();
+				return 0;
+			case 11:
+				AigisRecoverTP();
+				return 0;
+			case 12:
+				AigisSetMaxHPSP();
+				return 0;
+			case 13:
+				if (StatEdit() == -1)
+					break;
+				else
+					return 0;
+            case -1:
+                return -1;
+		}
+	}
+	return -1;
+}
+
 int EditPersonaDisplay()
 {
 	while(true) 
@@ -387,6 +574,55 @@ int EditPersonaDisplay()
 					return 0;
 			case 6:
 				if (EvolvePersona() == -1)
+					break;
+				else
+					return 0;
+			case 7:
+				CompleteCompendium();
+				return 0;
+            case -1:
+                return -1;
+		}
+	}
+	return -1;
+}
+
+int AigisEditPersonaDisplay()
+{
+	while(true) 
+	{
+		SEL_GENERIC_MASK(0, 0);
+		int selection = SEL_GENERIC_EX( 51, 8, 50, 1, 0 );
+		switch (selection)
+		{
+			case 0:
+				if (AddPersona() == -1)
+					break;
+				else
+					return 0;
+			case 1:
+				CLEAR_PERSONA_STOCK();
+				return 0;
+			case 2:
+				BIT_ON( 66 + 0x40000000 );
+				return 0;
+			case 3:
+				if (AigisChangePersonaLevel() == -1)
+					break;
+				else
+					return 0;
+			case 4:
+				if (AigisAddSkill() == -1)
+					break;
+				else
+					return 0;
+			case 5:
+				if (AigisRemoveSkill() == -1)
+					break;
+				else
+					return 0;
+			case 6:
+				if (AigisEvolvePersona() == -1)
 					break;
 				else
 					return 0;
@@ -455,6 +691,40 @@ int AddSkill()
 	return 0;
 }
 
+int AigisAddSkill()
+{
+	int member = AigisSelectMember(true, true);
+	if (member == -1)
+		return -1;
+	int persona = -1;
+	// Input ID if protagonist
+	if (member == 12)
+		persona = NumberMenu(3, 52);
+	// Check for evolution
+	else if (member > 1 && member < 9)
+	{
+		if (CHK_PERSONA_EVOLUTION( member ))
+			persona = 2 * member - 2;
+		else
+			persona = 2 * member - 3;
+	}
+	else if (member == 9)
+		persona = 16;
+	else if (member == 10)
+		persona = 15;
+	else if (member == 11)
+		persona = 17;
+	if (member == -1)
+		return -1;
+	if (persona == -1)
+		return -1;
+	int skill = NumberMenu(4, 53);
+	if (skill == -1)
+		return -1;
+	ADD_PERSONA_SKILL(member, persona, skill);
+	return 0;
+}
+
 int RemoveSkill()
 {
 	int member = SelectMember(true, true);
@@ -476,6 +746,40 @@ int RemoveSkill()
 		persona = 16;
 	else if (member == 10)
 		persona = 15;
+	if (member == -1)
+		return -1;
+	if (persona == -1)
+		return -1;
+	int skill = NumberMenu(4, 53);
+	if (skill == -1)
+		return -1;
+	REMOVE_PERSONA_SKILL(member, persona, skill);
+	return 0;
+}
+
+int AigisRemoveSkill()
+{
+	int member = AigisSelectMember(true, true);
+	if (member == -1)
+		return -1;
+	int persona = -1;
+	// Input ID if protagonist
+	if (member == 12)
+		persona = NumberMenu(3, 52);
+	// Check for evolution
+	else if (member > 1 && member < 9)
+	{
+		if (CHK_PERSONA_EVOLUTION( member ))
+			persona = 2 * member - 2;
+		else
+			persona = 2 * member - 3;
+	}
+	else if (member == 9)
+		persona = 16;
+	else if (member == 10)
+		persona = 15;
+	else if (member == 11)
+		persona = 17;
 	if (member == -1)
 		return -1;
 	if (persona == -1)
@@ -519,6 +823,40 @@ int ChangePersonaLevel()
 	return 0;
 }
 
+int AigisChangePersonaLevel()
+{
+	int member = AigisSelectMember(true, true);
+	if (member == -1)
+		return -1;
+	int persona = -1;
+	// Input ID if protagonist
+	if (member == 12)
+		persona = NumberMenu(3, 52);
+	// Check for evolution
+	else if (member > 1 && member < 9)
+	{
+		if (CHK_PERSONA_EVOLUTION( member ))
+			persona = 2 * member - 2;
+		else
+			persona = 2 * member - 3;
+	}
+	else if (member == 9)
+		persona = 16;
+	else if (member == 10)
+		persona = 15;
+	else if (member == 11)
+		persona = 17;
+	if (member == -1)
+		return -1;
+	if (persona == -1)
+		return -1;
+	int level = NumberMenu(2, 63);
+	if (level == -1)
+		return -1;
+	SET_PERSONA_LV(member, persona, level);
+	return 0;
+}
+
 int EvolvePersona()
 {
 	int member = SelectMember(false, true);
@@ -528,9 +866,30 @@ int EvolvePersona()
 	return 0;
 }
 
+int AigisEvolvePersona()
+{
+	int member = AigisSelectMember(false, true);
+	if (member == -1)
+		return -1;
+	PERSONA_EVOLUTION(member);
+	return 0;
+}
+
 int ChangeLevel()
 {
 	int member = SelectMember(true, true);
+	if (member == -1)
+		return -1;
+	int level = NumberMenu(2, 63);
+	if (level == -1)
+		return -1;
+	SET_HUMAN_LV(member, level);
+	return 0;
+}
+
+int AigisChangeLevel()
+{
+	int member = AigisSelectMember(true, true);
 	if (member == -1)
 		return -1;
 	int level = NumberMenu(2, 63);
@@ -571,7 +930,7 @@ int EditCommuDisplay()
 	while(true) 
 	{
 		SEL_GENERIC_MASK(0, 0);
-		int selection = SEL_GENERIC_EX( 71, 8, 70, 1, 0 );
+		int selection = SEL_GENERIC_EX( 74, 8, 70, 1, 0 );
 		switch (selection)
 		{
 			case 0:
@@ -719,9 +1078,31 @@ int AddMember()
 	return 0;
 }
 
+int AigisAddMember()
+{
+	int member = AigisSelectMember(false, false);
+	if (member == -1)
+		return -1;
+	BIT_ON( (member - 1) + 0x40000000 );
+	PARTY_IN( member );
+	DUNGEON_PARTNER_RELOAD();
+	return 0;
+}
+
 int RemoveMember()
 {
 	int member = SelectMember(false, false);
+	if (member == -1)
+		return -1;
+	BIT_OFF( (member - 1) + 0x40000000 );
+	PARTY_OUT( member );
+	DUNGEON_PARTNER_RELOAD();
+	return 0;
+}
+
+int AigisRemoveMember()
+{
+	int member = AigisSelectMember(false, false);
 	if (member == -1)
 		return -1;
 	BIT_OFF( (member - 1) + 0x40000000 );
@@ -744,9 +1125,39 @@ int SelectMember(bool protag, bool fuuka)
 	return member + 1;
 }
 
+int AigisSelectMember(bool protag, bool fuuka)
+{
+	int mask = 0;
+	if (!protag)
+		mask = mask + 1;
+	if (!fuuka)
+		mask = mask + 64;
+	SEL_GENERIC_MASK(mask, 0);
+	int member = SEL_GENERIC_EX( 41, 40, 74, 1, 0 );
+	// Aigis ID in Episode Aigis
+	if (member == 0)
+		return 12;
+	if (member == -1)
+		return -1;
+	return member;
+}
+
 int AddTheurgia()
 {
 	int member = SelectMember(true, true);
+	if (member == -1)
+		return -1;
+	int skill = NumberMenu(4, 53);
+	if (skill == -1)
+		return -1;
+	BIT_ON( 4 + 0x30000000 );
+	ADD_SPECIAL_SKILL(member, skill);
+	return 0;
+}
+
+int AigisAddTheurgia()
+{
+	int member = AigisSelectMember(true, true);
 	if (member == -1)
 		return -1;
 	int skill = NumberMenu(4, 53);
@@ -770,6 +1181,19 @@ int RemoveTheurgia()
 	return 0;
 }
 
+int AigisRemoveTheurgia()
+{
+	int member = AigisSelectMember(true, true);
+	if (member == -1)
+		return -1;
+	int skill = NumberMenu(4, 53);
+	if (skill == -1)
+		return -1;
+	BIT_ON( 4 + 0x30000000 );
+	REMOVE_SPECIAL_SKILL(member, skill);
+	return 0;
+}
+
 void RecoverTP()
 {
 	BIT_ON( 4 + 0x30000000 );
@@ -782,7 +1206,30 @@ void RecoverTP()
 
 void SetMaxHPSP()
 {
-	for ( int i = 0; i <= 10; i++ ) 
+	for ( int i = 1; i <= 10; i++ ) 
+	{
+		int currHP = GET_MAXHP(i);
+		int currSP = GET_MAXSP(i);
+		ADD_MAXHP_UP(i, 999 - currHP);
+		ADD_MAXSP_UP(i, 999 - currSP);
+		SET_HP(i, 999);
+		SET_SP(i, 999);
+	}
+}
+
+void AigisRecoverTP()
+{
+	BIT_ON( 4 + 0x30000000 );
+	for ( int i = 1; i <= 12; i++ ) 
+	{
+		int tp = GET_MAXTP(i);
+		SET_TP(i, tp);
+	}
+}
+
+void AigisSetMaxHPSP()
+{
+	for ( int i = 1; i <= 12; i++ ) 
 	{
 		int currHP = GET_MAXHP(i);
 		int currSP = GET_MAXSP(i);
